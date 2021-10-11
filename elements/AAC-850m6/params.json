@@ -1,0 +1,38 @@
+{
+    "add_hover_pressed": true,
+    "add_is_visible": true,
+    "category": "visual elements",
+    "default_dim": {
+        "height": 200,
+        "width": 400
+    },
+    "display": "cigro-grid-table",
+    "fields": {
+        "AAD": {
+            "caption": "data",
+            "default_val": "{ \"columns\" : [\"test\"], \"data\": [[1],[2]]}",
+            "doc": "data",
+            "editor": "DynamicValue",
+            "long_text": true,
+            "name": "data",
+            "rank": 0,
+            "value": "text"
+        },
+        "AAT": {
+            "caption": "sortable",
+            "default_val": false,
+            "editor": "Checkbox",
+            "name": "sortable",
+            "rank": 1
+        }
+    },
+    "icon": "ion-android-checkbox-outline-blank",
+    "property_applications": {
+        "Background": true,
+        "Border": true,
+        "Font": true,
+        "MinWidth": true,
+        "Padding": true,
+        "resizable": true
+    }
+}

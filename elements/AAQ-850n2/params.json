@@ -1,0 +1,86 @@
+{
+    "add_is_visible": true,
+    "category": "visual elements",
+    "default_dim": {
+        "height": 200,
+        "width": 400
+    },
+    "display": "cigro-sorting-table",
+    "events": {
+        "AAf": {
+            "caption": "row_of_cigro_clicked",
+            "name": "cigro_row_clicked"
+        }
+    },
+    "fields": {
+        "AAU": {
+            "caption": "data",
+            "default_val": "[     {         \"E-Mail\": \"xhon@example.com\",         \"Phone\": \"(223) 010 2442 544\",         \"2021-08-08\": \"100,231,102원\",         \"2021-08-09\": \"200,100,100원\",         \"2021-08-08\": \"100,231,102원\",         \"2021-08-09\": \"200,100,100원\",         \"2021-08-08\": \"100,231,102원\",         \"2021-08-09\": \"200,100,100원\",         \"2021-08-08\": \"100,231,102원\",         \"2021-08-09\": \"200,100,100원\"     },     {         \"E-Mail\": \"jhon@jape.com\",         \"Phone\": \"(123) 010 2442 544\",         \"2021-08-08\": \"200,231,102원\",         \"2021-08-09\": \"200,100,100원\",         \"2021-08-08\": \"140,231,102원\",         \"2021-08-09\": \"112,100,100원\",         \"2021-08-08\": \"305,231,102원\",         \"2021-08-09\": \"290,100,100원\",         \"2021-08-08\": \"110,231,102원\",         \"2021-08-09\": \"701,100,100원\"     },     {         \"E-Mail\": \"cigr@example.com\",         \"Phone\": \"(144) 010 2442 544\",         \"2021-08-08\": \"200,231,102원\",         \"2021-08-09\": \"210,100,100원\",         \"2021-08-08\": \"100,224,102원\",         \"2021-08-09\": \"220,103,100원\",         \"2021-08-08\": \"130,233,102원\",         \"2021-08-09\": \"240,100,100원\",         \"2021-08-08\": \"100,231,102원\",         \"2021-08-09\": \"110,100,100원\"     },     {         \"E-Mail\": \"hbap@example.com\",         \"Phone\": \"(823) 010 2442 544\",         \"2021-08-08\": \"200,231,102원\",         \"2021-08-09\": \"340,100,100원\",         \"2021-08-08\": \"100,211,102원\",         \"2021-08-09\": \"230,100,100원\",         \"2021-08-08\": \"120,231,102원\",         \"2021-08-09\": \"500,120,120원\",         \"2021-08-08\": \"100,211,142원\",         \"2021-08-09\": \"111,120,120원\"     } ]",
+            "editor": "DynamicValue",
+            "name": "data",
+            "rank": 0,
+            "value": "text"
+        },
+        "AAV": {
+            "caption": "sortable",
+            "default_val": true,
+            "editor": "Checkbox",
+            "name": "sortable",
+            "rank": 1
+        },
+        "AAW": {
+            "caption": "searchable",
+            "default_val": true,
+            "editor": "Checkbox",
+            "name": "searchable",
+            "rank": 2
+        },
+        "AAe": {
+            "caption": "filename",
+            "default_val": "report",
+            "doc": "다운로드 파일 이름",
+            "editor": "StaticText",
+            "name": "filename",
+            "rank": 3
+        },
+        "AAh": {
+            "caption": "resizable",
+            "default_val": true,
+            "editor": "Checkbox",
+            "name": "resizable",
+            "rank": 4
+        },
+        "AAi": {
+            "caption": "hide",
+            "default_val": "E-Mail",
+            "doc": "숨기려는 column명 ex) id,2021,22",
+            "editor": "StaticText",
+            "name": "hide",
+            "rank": 5
+        },
+        "AAj": {
+            "caption": "idColumnName",
+            "default_val": "E-Mail",
+            "editor": "StaticText",
+            "name": "idColumnName",
+            "rank": 6
+        }
+    },
+    "icon": "ion-android-checkbox-blank",
+    "property_applications": {
+        "Background": true,
+        "Border": true,
+        "MinWidth": true,
+        "resizable": true
+    },
+    "states": {
+        "AAg": {
+            "caption": "id of clicked item",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\treturn -1\n}"
+            },
+            "name": "id",
+            "value": "text"
+        }
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "add_is_visible": true,
+    "category": "input forms",
+    "default_dim": {
+        "height": 200,
+        "width": 400
+    },
+    "display": "cigro-chart",
+    "fields": {
+        "AAO": {
+            "caption": "data",
+            "default_val": "[   {     \"name\": \"5+3팩 (40% 할인)\",     \"data\": [       {         \"date\": \"2021-09-01\",         \"value\": 2742505       },       {         \"date\": \"2021-09-02\",         \"value\": 3175048       },       {         \"date\": \"2021-09-03\",         \"value\": 4936524       },       {         \"date\": \"2021-09-04\",         \"value\": 5376632       },       {         \"date\": \"2021-09-05\",         \"value\": 4535007       }     ]   },   {     \"name\": \"1팩 (10% 할인)\",     \"data\": [       {         \"date\": \"2021-09-01\",         \"value\": 812321       },       {         \"date\": \"2021-09-02\",         \"value\": 861251       },       {         \"date\": \"2021-09-03\",         \"value\": 667541       },       {         \"date\": \"2021-09-04\",         \"value\": 633796       },       {         \"date\": \"2021-09-05\",         \"value\": 1120208       }     ]   },   {     \"name\": \"2+1팩 (30% 할인)\",     \"data\": [       {         \"date\": \"2021-09-01\",         \"value\": 1447331       },       {         \"date\": \"2021-09-02\",         \"value\": 1217102       },       {         \"date\": \"2021-09-03\",         \"value\": 1591303       },       {         \"date\": \"2021-09-04\",         \"value\": 1443901       },       {         \"date\": \"2021-09-05\",         \"value\": 1933182       }     ]   } ]",
+            "editor": "DynamicValue",
+            "long_text": true,
+            "name": "data",
+            "rank": 0,
+            "value": "text"
+        },
+        "AAR": {
+            "caption": "roas_on",
+            "default_val": false,
+            "doc": "on/off (on: %, off: 원)",
+            "editor": "Checkbox",
+            "long_text": true,
+            "name": "roas_on",
+            "optional": false,
+            "rank": 1,
+            "value": "text"
+        },
+        "AAd": {
+            "caption": "all_in_one",
+            "default_val": false,
+            "doc": "모든 지표 한 곳에서 보여주는 경우",
+            "editor": "Checkbox",
+            "name": "all_in_one",
+            "rank": 2
+        }
+    },
+    "icon": "ion-android-done",
+    "property_applications": {
+        "Background": true,
+        "Border": true,
+        "MinWidth": true,
+        "resizable": true
+    }
+}

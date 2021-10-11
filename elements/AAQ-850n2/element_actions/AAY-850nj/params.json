@@ -1,0 +1,12 @@
+{
+    "caption": "onClickGridItem",
+    "doc": "",
+    "fields": {
+        "AAb": {
+            "caption": "id",
+            "editor": "StaticText",
+            "name": "id",
+            "rank": 0
+        }
+    }
+}

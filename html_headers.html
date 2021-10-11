@@ -1,0 +1,83 @@
+<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+<script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.1/xlsx.full.min.js"></script>
+<style>
+    .gridjs-wrapper {
+        border-radius: unset !important;
+        box-shadow: none !important;
+    }
+
+    th.gridjs-th {
+        background-color: rgba(77,77,77,1) !important;
+        height: 45px;
+    }
+
+    th {
+        font-weight: initial;
+    }
+
+    th.gridjs-th .gridjs-th-content {
+        color: #FEFEFE !important;
+    }
+
+    td.gridjs-td {
+        background-color: #fff;
+        height: 20px;
+    }
+    .export-btn{
+        position: absolute;
+        right: 9px;
+        top: 25px;
+        z-index: 9;
+        font-size: 13px;
+        font-family: Noto Sans KR;
+        background: #FEFEFE;
+        color: black;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 2px 10px;
+    }
+    
+    .export-btn:hover {
+        background: #4d4d4d;
+        color: white;
+    }
+    
+    button.gridjs-sort-neutral {
+        background-image: url(//s3.amazonaws.com/appforest_uf/f1593980408320x938648462994452700/iconfinder-icon%20%282%29.svg) !important;
+        opacity: 0.9 !important;
+    }
+    
+    button.gridjs-sort-asc {
+        background-image: url(//s3.amazonaws.com/appforest_uf/f1593980453835x437008517008756300/iconfinder-icon%20%281%29.svg) !important;
+        background-size: 15px !important;
+        background-position-y: 50% !important;
+    }
+    
+    button.gridjs-sort-desc {
+        background-image: url(//s3.amazonaws.com/appforest_uf/f1593980448869x172312511424175700/iconfinder-icon.svg) !important;
+        background-size: 15px !important;
+        background-position-y: 50% !important;
+    }
+    
+    button.gridjs-sort {
+        width: 15px !important;
+    }
+    
+    #sorting-table-wrapper th.gridjs-th .gridjs-th-content {
+        text-align: center;
+        font-size: 12px !important;
+        padding-top: 5px;
+    }
+</style>
+<script>
+    function exportFilteredData(filename, data_json) {
+        filename = `${filename}.xlsx`;
+        var ws = XLSX.utils.json_to_sheet(data_json);
+        var wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "실적데이터");
+        XLSX.writeFile(wb, filename);
+    }
+</script>
