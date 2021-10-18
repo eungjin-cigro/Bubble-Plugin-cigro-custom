@@ -42,5 +42,15 @@
         "Border": true,
         "MinWidth": true,
         "resizable": true
+    },
+    "states": {
+        "AAp": {
+            "caption": "is_loaded",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n\n\n}"
+            },
+            "name": "is_loaded",
+            "value": "boolean"
+        }
     }
 }

@@ -1,4 +1,5 @@
 {
+    "add_hover_pressed": true,
     "add_is_visible": true,
     "category": "visual elements",
     "default_dim": {
@@ -31,17 +32,18 @@
         "AAW": {
             "caption": "searchable",
             "default_val": true,
+            "doc": "",
             "editor": "Checkbox",
             "name": "searchable",
             "rank": 2
         },
         "AAe": {
             "caption": "filename",
-            "default_val": "report",
             "doc": "다운로드 파일 이름",
-            "editor": "StaticText",
+            "editor": "DynamicValue",
             "name": "filename",
-            "rank": 3
+            "rank": 3,
+            "value": "text"
         },
         "AAh": {
             "caption": "resizable",
@@ -59,10 +61,10 @@
             "rank": 5
         },
         "AAj": {
-            "caption": "idColumnName",
-            "default_val": "E-Mail",
+            "caption": "idColumnNames",
+            "default_val": "E-Mail,Phone",
             "editor": "StaticText",
-            "name": "idColumnName",
+            "name": "idColumnNames",
             "rank": 6
         }
     },
@@ -79,8 +81,40 @@
             "initialization_code": {
                 "fn": "function(properties, context) {\n\treturn -1\n}"
             },
-            "name": "id",
+            "name": "id1",
             "value": "text"
+        },
+        "AAk": {
+            "caption": "id2 of clicked item",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n\n\n}"
+            },
+            "name": "id2",
+            "value": "text"
+        },
+        "AAl": {
+            "caption": "id3 of clicked item",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n\n\n}"
+            },
+            "name": "id3",
+            "value": "text"
+        },
+        "AAn": {
+            "caption": "id4 of clicked item",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n\n\n}"
+            },
+            "name": "id4",
+            "value": "text"
+        },
+        "AAo": {
+            "caption": "is_loaded",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n\n\n}"
+            },
+            "name": "is_loaded",
+            "value": "boolean"
         }
     }
 }

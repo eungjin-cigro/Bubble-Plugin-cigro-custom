@@ -34,5 +34,15 @@
         "MinWidth": true,
         "Padding": true,
         "resizable": true
+    },
+    "states": {
+        "AAq": {
+            "caption": "is_loaded",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n\n\n}"
+            },
+            "name": "is_loaded",
+            "value": "boolean"
+        }
     }
 }

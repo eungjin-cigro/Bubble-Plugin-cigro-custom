@@ -3,4 +3,6 @@ function(instance, context) {
     
     div = $('<div></div>');
     instance.canvas.append(div)
+    
+    instance.publishState('is_loaded', 'no')
 }

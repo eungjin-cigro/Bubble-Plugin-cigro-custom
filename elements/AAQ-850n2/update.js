@@ -1,5 +1,5 @@
 function(instance, properties, context) {
-
+    
     instance.canvas.find("#holder").remove();
     var div;
 
@@ -8,7 +8,7 @@ function(instance, properties, context) {
     var filename = properties.filename
     div = $(`
 <div id="holder">
-<button class="export-btn">다운로드</button>
+<button class="export-btn">EXCEL 다운로드</button>
 <div id="sorting-table-wrapper"></div>
 </div>
 `);
@@ -16,17 +16,24 @@ function(instance, properties, context) {
     instance.canvas.append(div)
     instance.canvas.find("button.export-btn")
     .click(function(){
-        exportFilteredData(filename, data_dict)
+        exportFilteredData(filename, data_dict.map(function(item){
+            hideColumns.forEach(function(columnName){
+                delete item[columnName]
+            })
+            return item
+        }))
     })
     
     columns = Object.keys(data_dict[0])
+
     data = data_dict.map(function (item) {
         var dataRow = []
         Object.keys(item).forEach(function (key) {
-            if (!hideColumns.includes(key)) dataRow.push(item[key])
+            dataRow.push(item[key])
         })
         return dataRow
     })
+
 
 
     function action(instance, columns, data, hideColumns){
@@ -34,32 +41,65 @@ function(instance, properties, context) {
         var cols = []
 
         columns.forEach(columnName => {
-            const col = {
-                name: columnName,
-                sort: {
-                    compare: (a, b) => {
-                        a = a.replace(/[원,%]/g, "")
-                        b = b.replace(/[원,%]/g, "")
+            var col;
+            if (columnName == "이미지") {
+                col = {
+                    name: columnName,
+                    sort: {
+                        compare: (a, b) => {
+                            a = a.replace(/[원,%]/g, "")
+                            b = b.replace(/[원,%]/g, "")
+                            console.log(a, b)
 
-                        if (a.match(/^-?\d+$/) && b.match(/^-?\d+$/)) {
-                            a = parseFloat(a)
-                            b = parseFloat(b)
-                        }
+                            if (a.match(/^-?\d+$/) && b.match(/^-?\d+$/)) {
+                                a = parseFloat(a)
+                                b = parseFloat(b)
+                            }
 
-                        if (a > b) {
-                            return 1;
-                        } else if (b > a) {
-                            return -1;
-                        } else {
-                            return 0;
+                            if (a > b) {
+                                return 1;
+                            } else if (b > a) {
+                                return -1;
+                            } else {
+                                return 0;
+                            }
                         }
-                    }
-                },
+                    },
+                    hidden: hideColumns.includes(columnName),
+                    formatter: (_, row) => gridjs.html(`<img src="${row.cells["이미지"]}" onerror="this.onerror=null;this.src='https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1632301642383x935838146639192600%2Fno_image.png?w=192&h=192&auto=compress&dpr=1&fit=max'"/>`)
+                }
+            } else {
+                col = {
+                    name: columnName,
+                    sort: {
+                        compare: (a, b) => {
+                            a = a.replace(/[원,%]/g, "")
+                            b = b.replace(/[원,%]/g, "")
+                            console.log(a, b)
+
+                            if (a.match(/^-?\d+$/) && b.match(/^-?\d+$/)) {
+                                a = parseFloat(a)
+                                b = parseFloat(b)
+                            }
+
+                            if (a > b) {
+                                return 1;
+                            } else if (b > a) {
+                                return -1;
+                            } else {
+                                return 0;
+                            }
+                        }
+                    },
+                    hidden: hideColumns.includes(columnName),
+                }
             }
+
             if (!hideColumns.includes(col.name)) cols.push(col)
+
         });
 
-        new gridjs.Grid({
+        var grid = new gridjs.Grid({
             data: data,
             columns: cols,
             sort: properties.sortable,
@@ -86,25 +126,39 @@ function(instance, properties, context) {
                 td: {
                     'min-width': '120px',
                     'padding': '12px 16px',
-                    'color': 'rgb(31,41,48)'
+                    'color': 'rgb(31,41,48)',
+                    'cursor': 'pointer'
                 }
             }
         }).render(instance.canvas.find("#sorting-table-wrapper")[0]);
+
+        grid.on('rowClick', function (...args) {
+            clickedData = args[1]['cells'].map(item => item.data)
+            searched = data_dict.find(function (element) {
+                dataRow = []
+                Object.entries(element).forEach(function (item) {
+                    if (!hideColumns.includes(item[0])) dataRow.push(item[1])
+                })
+                return JSON.stringify(dataRow) == JSON.stringify(clickedData)
+            })
+
+            var idColumnNames = properties.idColumnNames.split(",")
+
+            var id1 = searched[idColumnNames[0]]
+            var id2 = searched[idColumnNames[1]]
+            var id3 = searched[idColumnNames[2]]
+            var id4 = searched[idColumnNames[3]]
+            instance.publishState('id1', id1)
+            instance.publishState('id2', id2)
+            instance.publishState('id3', id3)
+            instance.publishState('id4', id4)
+            instance.triggerEvent('cigro_row_clicked', function () {});
+        });
         
         var checkExist = setInterval(function() {
             var rowElements = instance.canvas.find('tbody tr.gridjs-tr')
             if (rowElements.length > 0) {
-                
-                rowElements.each(function(index,el){
-                    $(el).css("cursor","pointer");
-                    $(el).click(function(){
-                        var id = data_dict[index][properties.idColumnName]
-                        instance.triggerEvent('cigro_row_clicked', function(){
-                            instance.publishState('id', id)
-                        });
-                    });
-                })
-
+                instance.publishState('is_loaded', 'yes')
                 clearInterval(checkExist);
             }
         }, 500)

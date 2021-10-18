@@ -1,7 +1,7 @@
 function(instance, properties, context) {
     var div;
     instance.canvas.find("div").remove()
-    
+    instance.publishState('is_loaded', 'no')
     function makeid(length) {
         var result           = '';
         var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -219,6 +219,7 @@ function(instance, properties, context) {
 
         var chart = new ApexCharts(document.querySelector("#"+id), options);
         chart.render();
+        instance.publishState('is_loaded', 'yes')
     }
 
 
