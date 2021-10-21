@@ -69,7 +69,7 @@ function(instance, properties, context) {
             }
 
             if (columnName == "이미지") {
-                col['formatter'] = function(_, row){return gridjs.html(`<img src="${row.cells[index].data}" onerror="this.onerror=null;this.src='https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1632301642383x935838146639192600%2Fno_image.png?w=192&h=192&auto=compress&dpr=1&fit=max'"/>`)}
+                col['formatter'] = function(_, row){return gridjs.html(`<img style="width: 80px" src="${row.cells[index].data}" onerror="this.onerror=null;this.src='https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1632301642383x935838146639192600%2Fno_image.png?w=192&h=192&auto=compress&dpr=1&fit=max'"/>`)}
             }
 
             if (!hideColumns.includes(col.name)) cols.push(col)
@@ -102,9 +102,10 @@ function(instance, properties, context) {
 
                 td: {
                     'min-width': '100px',
-                    'padding': '6px 8px',
+                    'padding': '8px 16px',
                     'color': 'rgb(31,41,48)',
-                    'cursor': 'pointer'
+                    'cursor': 'pointer',
+                    'text-align': 'center'
                 }
             }
         }).render(instance.canvas.find("#sorting-table-wrapper")[0]);
