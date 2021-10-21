@@ -35,64 +35,41 @@ function(instance, properties, context) {
     })
 
 
-
     function action(instance, columns, data, hideColumns){
 
         var cols = []
 
-        columns.forEach(columnName => {
+        columns.forEach((columnName, index) => {
+            
             var col;
+            col = {
+                name: columnName,
+                sort: {
+                    compare: (a, b) => {
+                        a = a.replace(/[원,%]/g, "")
+                        b = b.replace(/[원,%]/g, "")
+                        console.log(a, b)
+
+                        if (a.match(/^-?\d+$/) && b.match(/^-?\d+$/)) {
+                            a = parseFloat(a)
+                            b = parseFloat(b)
+                        }
+
+                        if (a > b) {
+                            return 1;
+                        } else if (b > a) {
+                            return -1;
+                        } else {
+                            return 0;
+                        }
+                    }
+                },
+                autoWidth: false,
+                hidden: hideColumns.includes(columnName),
+            }
+
             if (columnName == "이미지") {
-                col = {
-                    name: columnName,
-                    sort: {
-                        compare: (a, b) => {
-                            a = a.replace(/[원,%]/g, "")
-                            b = b.replace(/[원,%]/g, "")
-                            console.log(a, b)
-
-                            if (a.match(/^-?\d+$/) && b.match(/^-?\d+$/)) {
-                                a = parseFloat(a)
-                                b = parseFloat(b)
-                            }
-
-                            if (a > b) {
-                                return 1;
-                            } else if (b > a) {
-                                return -1;
-                            } else {
-                                return 0;
-                            }
-                        }
-                    },
-                    hidden: hideColumns.includes(columnName),
-                    formatter: (_, row) => gridjs.html(`<img src="${row.cells["이미지"]}" onerror="this.onerror=null;this.src='https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1632301642383x935838146639192600%2Fno_image.png?w=192&h=192&auto=compress&dpr=1&fit=max'"/>`)
-                }
-            } else {
-                col = {
-                    name: columnName,
-                    sort: {
-                        compare: (a, b) => {
-                            a = a.replace(/[원,%]/g, "")
-                            b = b.replace(/[원,%]/g, "")
-                            console.log(a, b)
-
-                            if (a.match(/^-?\d+$/) && b.match(/^-?\d+$/)) {
-                                a = parseFloat(a)
-                                b = parseFloat(b)
-                            }
-
-                            if (a > b) {
-                                return 1;
-                            } else if (b > a) {
-                                return -1;
-                            } else {
-                                return 0;
-                            }
-                        }
-                    },
-                    hidden: hideColumns.includes(columnName),
-                }
+                col['formatter'] = function(_, row){return gridjs.html(`<img src="${row.cells[index].data}" onerror="this.onerror=null;this.src='https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1632301642383x935838146639192600%2Fno_image.png?w=192&h=192&auto=compress&dpr=1&fit=max'"/>`)}
             }
 
             if (!hideColumns.includes(col.name)) cols.push(col)
@@ -124,8 +101,8 @@ function(instance, properties, context) {
                 },
 
                 td: {
-                    'min-width': '120px',
-                    'padding': '12px 16px',
+                    'min-width': '100px',
+                    'padding': '6px 8px',
                     'color': 'rgb(31,41,48)',
                     'cursor': 'pointer'
                 }
