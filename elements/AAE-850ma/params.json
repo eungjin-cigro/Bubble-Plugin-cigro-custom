@@ -34,6 +34,13 @@
             "editor": "Checkbox",
             "name": "all_in_one",
             "rank": 2
+        },
+        "AAt": {
+            "caption": "is_realtime",
+            "default_val": false,
+            "editor": "Checkbox",
+            "name": "is_realtime",
+            "rank": 3
         }
     },
     "icon": "ion-android-done",

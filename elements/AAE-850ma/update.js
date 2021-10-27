@@ -64,7 +64,7 @@ function(instance, properties, context) {
                     enabled: false,
                 },
                 labels: {
-                    format: "MM-dd",
+                    format: (properties.is_realtime) ? "HH-mm" : "MM-dd",
                     formatter: undefined,
                     style: {
                         color: "#252525",
@@ -108,7 +108,7 @@ function(instance, properties, context) {
                 enabled: true,
                 followCursor: true,
                 x: {
-                    format: "MM-dd",
+                    format: (properties.is_realtime) ? "HH-mm" : "MM-dd",
                     formatter: undefined,
                 },
                 y: {

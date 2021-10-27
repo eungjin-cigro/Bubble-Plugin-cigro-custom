@@ -6,10 +6,11 @@ function(instance, properties, context) {
     var data_dict = JSON.parse(properties.data)
 	var hideColumns = properties.hide.split(",")
     var filename = properties.filename
+    
     div = $(`
 <div id="holder">
-<button class="export-btn">EXCEL 다운로드</button>
-<div id="sorting-table-wrapper"></div>
+<button class="export-btn searchable-${properties.searchable}">EXCEL 다운로드</button>
+<div id="sorting-table-wrapper" class="${properties.classname}"></div>
 </div>
 `);
 
@@ -99,13 +100,11 @@ function(instance, properties, context) {
                     'font-family': 'Noto Sans KR',
                     'font-size': '14px'
                 },
-
                 td: {
                     'min-width': '100px',
                     'padding': '8px 16px',
                     'color': 'rgb(31,41,48)',
-                    'cursor': 'pointer',
-                    'text-align': 'center'
+                    ...(properties.clickable ? {'cursor': 'pointer'} : {'cursor': 'text'})
                 }
             }
         }).render(instance.canvas.find("#sorting-table-wrapper")[0]);
